@@ -235,6 +235,7 @@ public class WifiActivity extends Activity
 			//根据UID 读取数据库中的3G流量
 			int traffic = getTrafficOfUid(info.applicationInfo.uid);
 			appInfo.setAppTraffic(String.format("%.2f", (traffic/1024.0/1024.0)));	
+			appInfo.setTraffic(traffic);
 						
 			String appName = info.applicationInfo.loadLabel(pm).toString();			
 			if(appName.length() > 4)
@@ -263,7 +264,12 @@ public class WifiActivity extends Activity
 			AppInfo user0 = (AppInfo) arg0;
 			AppInfo user1 = (AppInfo) arg1;
 			
-			int flag = user1.getAppTraffic().compareTo(user0.getAppTraffic());
+			int flag = 0;
+			
+			if(user0.getTraffic() > user1.getTraffic())
+				flag = -1;	
+			else if (user0.getTraffic() < user1.getTraffic())
+				flag = 1;
 					
 			return flag;		
 		}	 

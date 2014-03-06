@@ -1,17 +1,18 @@
 package com.example.trafficrank;
 
+import android.R.integer;
 import android.graphics.drawable.Drawable;
 
 public class AppInfo 
 {  
     private Drawable appIcon ;  
-    private String appTraffic;
+    private String appTraffic;//用于显示
     private String appLabel;
     private int appUid;
+    private int traffic;//用于比较
     
     public AppInfo(){}
-    
-   
+      
     public Drawable getAppIcon() 
     {
         return appIcon;
@@ -50,5 +51,15 @@ public class AppInfo
     public void setAppUid(int uid)
     {
     	this.appUid = uid;
+    }
+    
+    public int getTraffic()
+    {
+    	return traffic;
+    }
+    
+    public void setTraffic(int traffic)
+    {
+    	this.traffic = traffic;
     }
 }
