@@ -1,0 +1,42 @@
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+    android:orientation="vertical"> 
+     
+    <TextView      
+        android:layout_width="match_parent"
+        android:layout_height="45sp"
+        android:textSize="30sp"
+        android:layout_gravity="center"
+        android:gravity="center"
+        android:textColor="#00FF00"
+        android:background="#696969"
+        android:textStyle="bold"
+        android:text="流量排行榜" />
+      
+    
+    <RelativeLayout
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent"
+        android:orientation="vertical">
+        
+        <Button
+	        android:id="@+id/button_3g"
+	        android:layout_width="match_parent"
+	        android:layout_height="50sp"       
+	       	android:layout_alignParentBottom="true"
+	       	android:textSize="25sp"
+	       	android:textColor="#FFFFFF"
+	       	android:background="#00adfa"
+	        android:text="查看3g流量排行" />
+        
+		<ListView
+		    android:id="@+id/ListView_wifi"
+		    android:layout_width="wrap_content"
+		    android:layout_height="wrap_content" 
+		    android:layout_above="@id/button_3g"/>	
+		        
+	</RelativeLayout>	
+     	
+</LinearLayout>  
