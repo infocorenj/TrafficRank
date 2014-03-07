@@ -27,7 +27,7 @@ public class BootReceiver extends BroadcastReceiver
 					Intent newIntent = new Intent(context, trafficService.class);					
 					context.startService(newIntent);
 					
-					checkShutdownCorrect(context);
+					//checkShutdownCorrect(context);
 				}
 			}		
 			else 

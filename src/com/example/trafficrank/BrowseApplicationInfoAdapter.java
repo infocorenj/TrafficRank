@@ -2,6 +2,8 @@ package com.example.trafficrank;
 
 import java.util.List;
 
+import com.bileisoft.rank.AppInfo;
+
 import android.content.Context;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -10,8 +12,8 @@ import android.widget.BaseAdapter;
 import android.widget.ImageView;
 import android.widget.TextView;
 
-public class BrowseApplicationInfoAdapter extends BaseAdapter {
-    
+public class BrowseApplicationInfoAdapter extends BaseAdapter 
+{    
     private List<AppInfo> mlistAppInfo = null;
     
     LayoutInflater infater = null;
@@ -58,8 +60,12 @@ public class BrowseApplicationInfoAdapter extends BaseAdapter {
         
         AppInfo appInfo = (AppInfo) getItem(position);
         holder.appIcon.setImageDrawable(appInfo.getAppIcon());
-        holder.tvTraffic.setText(appInfo.getAppTraffic());
-        holder.tvAppLabel.setText(appInfo.getAppLabel());
+        holder.tvTraffic.setText(String.format("%.2f", (appInfo.getTraffic()/1024.0/1024.0)));
+        
+        String label = appInfo.getAppLabel();
+        if(label.length() > 4)
+        	label = label.substring(0, 4) + "...";
+        holder.tvAppLabel.setText(label);
         
         return view;
     }

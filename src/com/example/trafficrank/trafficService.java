@@ -2,6 +2,9 @@ package com.example.trafficrank;
 
 import java.util.Timer;
 import java.util.TimerTask;
+
+import com.bileisoft.rank.TrafficRank;
+
 import android.app.Notification;
 import android.app.NotificationManager;
 import android.app.PendingIntent;
@@ -19,7 +22,7 @@ import android.os.Message;
 /**
  * Android Service 示例
  * 
- * @author dev
+ * @author lmh
  * 
  */
 public class trafficService extends Service
@@ -27,7 +30,6 @@ public class trafficService extends Service
 	private final Timer timer = new Timer();
 	private TimerTask task;	
 	private Handler handler;
-	private int uid;
 	
 	@Override
 	public IBinder onBind(Intent intent) 
@@ -50,13 +52,16 @@ public class trafficService extends Service
 		        
 		        try
 		        {			        	
-					updateTraffic();
-					notification("TrafficRank has updated", "更新流量");
+					//updateTraffic();
+		        	TrafficRank trafficRank = new TrafficRank(trafficService.this, "test.db", "traffic", "sp");
+					trafficRank.updateTraffic();
+					
+		        	notification("TrafficRank has updated", "更新流量数据");
 				} 
 		        catch (Exception e)
 		        {
 					// TODO: handle exception
-		        	notification("TrafficRank update error", "更新流量");
+		        	notification("TrafficRank update error", "更新流量异常");
 				}
 		        
 		    }
@@ -129,7 +134,7 @@ public class trafficService extends Service
 	}
 	
 	//更新当前数据
-	public void updateTraffic()throws Exception
+	/*public void updateTraffic()throws Exception
 	{						
 		//打开数据库		
 		SQLiteDatabase db = openOrCreateDatabase("test.db",  Context.MODE_PRIVATE, null); 				
@@ -198,5 +203,5 @@ public class trafficService extends Service
 			
 			db.update("traffic", cv, "uid = ?", new String[]{String.valueOf(uid)});
 		}				
-	}	
+	}*/	
 }

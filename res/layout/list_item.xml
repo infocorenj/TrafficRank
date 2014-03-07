@@ -42,7 +42,7 @@
         android:layout_toLeftOf="@id/MB"    
         android:layout_alignParentBottom="true"
         android:text="0"
-        android:textColor="#0000FF"
+        android:textColor="#00adfa"
         android:textSize="30sp" />       
    
 </RelativeLayout>
