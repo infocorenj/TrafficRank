@@ -29,7 +29,7 @@
 	       	android:textSize="25sp"
 	       	android:textColor="#FFFFFF"
 	       	android:background="#00adfa"
-	        android:text="查看3g流量排行" />
+	        android:text="点击查看3G流量排行" />
         
 		<ListView
 		    android:id="@+id/ListView_wifi"

@@ -19,7 +19,7 @@ import android.os.Message;
 /**
  * Android Service Ê¾Àý
  * 
- * @author dev
+ * @author lmh
  * 
  */
 public class trafficService extends Service
@@ -27,7 +27,6 @@ public class trafficService extends Service
 	private final Timer timer = new Timer();
 	private TimerTask task;	
 	private Handler handler;
-	private int uid;
 	
 	@Override
 	public IBinder onBind(Intent intent) 

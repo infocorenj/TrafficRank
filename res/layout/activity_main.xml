@@ -24,12 +24,12 @@
         <Button
 	        android:id="@+id/button_wifi"
 	        android:layout_width="match_parent"
-	        android:layout_height="50sp"       
+	        android:layout_height="50sp"    	        
 	       	android:layout_alignParentBottom="true"
 	       	android:textSize="25sp"
 	       	android:textColor="#FFFFFF"
-	       	android:background="#00adfa"
-	        android:text="查看wifi流量排行" />
+	       	android:background="#00adfa"	       	
+	        android:text="点击查看wifi流量排行" />
         
 		<ListView
 		    android:id="@+id/ListView"

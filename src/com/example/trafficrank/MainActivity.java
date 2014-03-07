@@ -7,7 +7,6 @@ import java.util.List;
 import android.net.TrafficStats;
 import android.os.AsyncTask;
 import android.os.Bundle;
-import android.os.Handler;
 import android.app.Activity;
 import android.app.ProgressDialog;
 import android.content.ContentValues;
@@ -62,8 +61,7 @@ public class MainActivity extends Activity
 		//判断并显示
 		boolean isInit = sp.getBoolean("isInit", false);
 		if (!isInit) 
-		{
-			progressDialog = ProgressDialog.show(MainActivity.this, "请稍等...", "数据库初始化中...", true);
+		{		
 			InitDatabaseTask task = new InitDatabaseTask();
 			task.execute(new String[]{});
 			
@@ -71,9 +69,7 @@ public class MainActivity extends Activity
 			editor.commit();	
 		}
 		else
-		{
-			//updateTraffic();	
-			progressDialog = ProgressDialog.show(MainActivity.this, "请稍等...", "数据加载中...", true);
+		{							
 			UpdateTask task = new UpdateTask();
 			task.execute(new String[]{});			
 		}					
@@ -147,7 +143,7 @@ public class MainActivity extends Activity
 			
 			//根据UID 读取数据库中的3G流量
 			int traffic = getTrafficOfUid(info.applicationInfo.uid);
-			appInfo.setAppTraffic(String.format("%.2f", (traffic/1024.0/1024.0)));	
+			//appInfo.setAppTraffic(String.format("%.2f", (traffic/1024.0/1024.0)));	
 			appInfo.setTraffic(traffic);
 						
 			String appName = info.applicationInfo.loadLabel(pm).toString();			
@@ -375,6 +371,7 @@ public class MainActivity extends Activity
 	     {
 	    	 //在 doInBackground(Params...)之前被调用，在ui线程执行  	         
 	         //mProgressBar.setProgress(0);//进度条复位  
+	    	 progressDialog = ProgressDialog.show(MainActivity.this, "请稍等...", "数据加载中...", true);
 	     }  
 	       
 	     protected void onCancelled () 
@@ -419,6 +416,7 @@ public class MainActivity extends Activity
 	     {
 	    	 //在 doInBackground(Params...)之前被调用，在ui线程执行  	         
 	         //mProgressBar.setProgress(0);//进度条复位  
+	    	 progressDialog = ProgressDialog.show(MainActivity.this, "请稍等...", "数据库初始化中...", true);
 	     }  
 	       
 	     protected void onCancelled () 
@@ -430,9 +428,14 @@ public class MainActivity extends Activity
 }
 
 //比较流量大小
-class ComparatorUser implements Comparator
+class ComparatorUser implements Comparator<AppInfo>
 {
-	public int compare(Object arg0, Object arg1) 
+	public ComparatorUser()
+	{
+		super();
+	}
+	
+	public int compare(AppInfo arg0, AppInfo arg1) 
 	{
 		AppInfo user0 = (AppInfo) arg0;
 		AppInfo user1 = (AppInfo) arg1;

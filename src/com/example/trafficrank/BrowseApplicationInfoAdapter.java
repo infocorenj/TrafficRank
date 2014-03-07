@@ -10,8 +10,8 @@ import android.widget.BaseAdapter;
 import android.widget.ImageView;
 import android.widget.TextView;
 
-public class BrowseApplicationInfoAdapter extends BaseAdapter {
-    
+public class BrowseApplicationInfoAdapter extends BaseAdapter 
+{    
     private List<AppInfo> mlistAppInfo = null;
     
     LayoutInflater infater = null;
@@ -58,7 +58,7 @@ public class BrowseApplicationInfoAdapter extends BaseAdapter {
         
         AppInfo appInfo = (AppInfo) getItem(position);
         holder.appIcon.setImageDrawable(appInfo.getAppIcon());
-        holder.tvTraffic.setText(appInfo.getAppTraffic());
+        holder.tvTraffic.setText(String.format("%.2f", (appInfo.getTraffic()/1024.0/1024.0)));
         holder.tvAppLabel.setText(appInfo.getAppLabel());
         
         return view;

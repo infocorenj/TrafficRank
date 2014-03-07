@@ -4,14 +4,10 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Comparator;
 import java.util.List;
-
-import com.example.trafficrank.MainActivity.UpdateTask;
-
 import android.app.Activity;
 import android.app.ProgressDialog;
 import android.content.ContentValues;
 import android.content.Context;
-import android.content.Intent;
 import android.content.pm.PackageInfo;
 import android.content.pm.PackageManager;
 import android.database.Cursor;
@@ -37,9 +33,7 @@ public class WifiActivity extends Activity
 	{
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.wifi);
-		
-		//updateTraffic();	
-		progressDialog = ProgressDialog.show(WifiActivity.this, "请稍等...", "数据加载中...", true);
+			
 		UpdateTask task = new UpdateTask();
 		task.execute(new String[]{});
 		
@@ -96,6 +90,7 @@ public class WifiActivity extends Activity
 	     {
 	    	 //在 doInBackground(Params...)之前被调用，在ui线程执行  	         
 	         //mProgressBar.setProgress(0);//进度条复位  
+	    	 progressDialog = ProgressDialog.show(WifiActivity.this, "请稍等...", "数据加载中...", true);
 	     }  
 	       
 	     protected void onCancelled () 
@@ -212,8 +207,7 @@ public class WifiActivity extends Activity
         BrowseApplicationInfoAdapter browseAppAdapter = new BrowseApplicationInfoAdapter(
                 this, mlistAppInfo);
         
-        list.setAdapter(browseAppAdapter); 
-        		
+        list.setAdapter(browseAppAdapter);        		
 	}
 	
 	//更新所有appInfo，加入wifi流量、icon、label
@@ -234,7 +228,7 @@ public class WifiActivity extends Activity
 			
 			//根据UID 读取数据库中的3G流量
 			int traffic = getTrafficOfUid(info.applicationInfo.uid);
-			appInfo.setAppTraffic(String.format("%.2f", (traffic/1024.0/1024.0)));	
+			//appInfo.setAppTraffic(String.format("%.2f", (traffic/1024.0/1024.0)));	
 			appInfo.setTraffic(traffic);
 						
 			String appName = info.applicationInfo.loadLabel(pm).toString();			
@@ -257,9 +251,9 @@ public class WifiActivity extends Activity
 	}
 	
 	//比较流量大小
-	class ComparatorUser implements Comparator
+	class ComparatorUser implements Comparator<AppInfo>
 	{
-		public int compare(Object arg0, Object arg1) 
+		public int compare(AppInfo arg0, AppInfo arg1) 
 		{
 			AppInfo user0 = (AppInfo) arg0;
 			AppInfo user1 = (AppInfo) arg1;
