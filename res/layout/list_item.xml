@@ -8,10 +8,10 @@
 
     <ImageView
         android:id="@+id/ItemImage"
-        android:layout_width="60sp"
-        android:layout_height="60sp"      
+        android:layout_width="50sp"
+        android:layout_height="50sp"      
         android:layout_alignParentLeft="true"
-        android:paddingTop="12dip" />
+        android:paddingTop="1dip" />
     
      <TextView
         android:id="@+id/appLabel"
@@ -31,7 +31,7 @@
         android:layout_height="22sp"
         android:layout_alignParentRight="true"
         android:layout_alignParentBottom="true"
-        android:layout_marginLeft="10sp"
+        android:layout_marginLeft="10sp"       
         android:text="MB"
         android:textSize="20dip" />
 
